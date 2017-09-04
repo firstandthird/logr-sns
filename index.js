@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 exports.defaults = {
   clientId: process.env.AWS_ACCESS_KEY_ID,
   secretId: process.env.AWS_SECRET_ACCESS_KEY,
-  phoneNumbers: [] // 11-digit phone number starting with 1
+  topic: ''
 };
 
 let sns = false;
@@ -17,15 +17,13 @@ exports.log = function(options, tags, message) {
     });
     sns = new AWS.SNS();
   }
-  options.phoneNumbers.forEach((number) => {
-    const params = {
-      Message: `[${tags}] ${message}`,
-      PhoneNumber: number
-    };
-    sns.publish(params, (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-    });
+  const params = {
+    Message: `[${tags}] ${message}`,
+    TopicArn: options.topic
+  };
+  sns.publish(params, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
   });
 };

@@ -23,7 +23,7 @@ test('can send a message to SNS', (t) => {
       sns: {
         reporter: logrSNS,
         options: {
-          phoneNumbers: process.env.SNS_ENDPOINTS.split(',')
+          topic: process.env.SNS_TOPIC
         }
       }
     }
