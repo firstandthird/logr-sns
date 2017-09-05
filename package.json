@@ -1,0 +1,42 @@
+{
+  "name": "logr-sns",
+  "version": "0.0.1",
+  "description": "plugin for logr that sends text messages to your phone via AWS SNS",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "tap ./test/sns.test.js | tap-spec"
+  },
+  "keywords": [
+    "logr",
+    "AWS",
+    "text",
+    "notifications",
+    "SMS",
+    "SNS"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firstandthird/logr-sns.git"
+  },
+  "author": "First+Third",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firstandthird/logr-sns/issues"
+  },
+  "eslintConfig": {
+    "extends": "firstandthird"
+  },
+  "homepage": "https://github.com/firstandthird/logr-sns#readme",
+  "devDependencies": {
+    "eslint": "^3.9.1",
+    "eslint-config-firstandthird": "^3.2.0",
+    "eslint-plugin-import": "^2.1.0",
+    "logr": "^2.4.0",
+    "tap": "^10.3.1",
+    "tap-spec": "^4.1.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.108.0"
+  }
+}
