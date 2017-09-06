@@ -1,6 +1,6 @@
 {
   "name": "logr-sns",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "plugin for logr that sends text messages to your phone via AWS SNS",
   "main": "index.js",
   "scripts": {
