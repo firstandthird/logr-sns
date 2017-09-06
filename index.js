@@ -1,5 +1,6 @@
 'use strict';
 const AWS = require('aws-sdk');
+const flatten = require('flat');
 
 exports.defaults = {
   clientId: process.env.AWS_ACCESS_KEY_ID,
@@ -17,8 +18,10 @@ exports.log = function(options, tags, message) {
     });
     sns = new AWS.SNS();
   }
+  // force string:
+  const smsMessage = typeof message === 'object' ? JSON.stringify(flatten(message)) : message.toString();
   const params = {
-    Message: `[${tags}] ${message}`,
+    Message: `[${tags}] ${smsMessage}`,
     TopicArn: options.topic
   };
   sns.publish(params, (err, data) => {
