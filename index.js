@@ -1,6 +1,7 @@
 'use strict';
 const AWS = require('aws-sdk');
 const flatten = require('flat');
+const stringify = require('json-stringify-safe');
 
 exports.defaults = {
   clientId: process.env.AWS_ACCESS_KEY_ID,
@@ -18,8 +19,16 @@ exports.log = function(options, tags, message) {
     });
     sns = new AWS.SNS();
   }
-  // force string:
-  const smsMessage = typeof message === 'object' ? JSON.stringify(flatten(message)) : message.toString();
+  // force object to be flat and also a string:
+  let smsMessage = '';
+  if (typeof message === 'object') {
+    const flatObj = flatten(message);
+    Object.keys(flatObj).forEach((key) => {
+      smsMessage += `${key}: ${stringify(flatObj[key])} `;
+    });
+  } else {
+    smsMessage = message.toString();
+  }
   const params = {
     Message: `[${tags}] ${smsMessage}`,
     TopicArn: options.topic

@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.108.0",
-    "flat": "^4.0.0"
+    "flat": "^4.0.0",
+    "json-stringify-safe": "^5.0.1"
   }
 }
