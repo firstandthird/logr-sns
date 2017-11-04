@@ -24,13 +24,13 @@ exports.log = function(options, tags, message) {
   if (typeof message === 'object') {
     const flatObj = flatten(message);
     Object.keys(flatObj).forEach((key) => {
-      smsMessage += `${key}: ${stringify(flatObj[key])} `;
+      smsMessage += `${key}: ${stringify(flatObj[key])} \n`;
     });
   } else {
     smsMessage = message.toString();
   }
   const params = {
-    Message: `[${tags}] ${smsMessage}`,
+    Message: `${smsMessage} \n [${tags}] `,
     TopicArn: options.topic
   };
   sns.publish(params, (err, data) => {
