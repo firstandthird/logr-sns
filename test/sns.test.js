@@ -44,6 +44,6 @@ test('can send an object to SNS', (t) => {
       }
     }
   });
-  log(['logr-sns', 'notice'], { date: new Date(), message: { a: true, b: 123 }, err: new Error('an error') });
+  log(['logr-sns', 'notice'], { date: new Date(), message: 'this is a test message', a: true, b: 123, err: new Error('an error') });
   t.end();
 });
