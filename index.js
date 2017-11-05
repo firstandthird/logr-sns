@@ -23,7 +23,7 @@ exports.log = function(options, tags, message) {
   let smsMessage = '';
   if (typeof message === 'object') {
     const flatObj = flatten(message);
-    if (flatObj.message) {
+    if (typeof flatObj.message === 'string') {
       smsMessage = `${flatObj.message} \n`;
       delete flatObj.message;
     }
