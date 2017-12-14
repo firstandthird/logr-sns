@@ -6,6 +6,7 @@ const stringify = require('json-stringify-safe');
 exports.defaults = {
   clientId: process.env.AWS_ACCESS_KEY_ID,
   secretId: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
   topic: ''
 };
 
@@ -15,7 +16,8 @@ exports.log = function(options, tags, message) {
   if (!sns) {
     AWS.config.update({
       accessKeyId: options.clientId,
-      secretAccessKey: options.secretId
+      secretAccessKey: options.secretId,
+      region: options.region
     });
     sns = new AWS.SNS();
   }
